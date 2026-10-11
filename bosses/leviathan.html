@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DEEP_SEA: THE_LEVIATHAN</title>
+    <style>
+        :root {
+            --sea-cyan: #00ced1;
+            --sea-dark: #00111a;
+        }
+
+        body {
+            margin: 0; padding: 0; background: var(--sea-dark);
+            color: #e0ffff; font-family: 'Segoe UI', sans-serif;
+            overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+
+        .water-ripple {
+            position: absolute; width: 150%; height: 150%;
+            background: repeating-radial-gradient(circle at 50% 50%, transparent, rgba(0, 206, 209, 0.03) 100px);
+            animation: waveMotion 15s linear infinite; z-index: 1;
+        }
+
+        .levi-frame {
+            width: 95vw; height: 90vh; display: flex; flex-direction: column;
+            background: rgba(0, 20, 30, 0.85); border: 3px solid var(--sea-cyan);
+            backdrop-filter: blur(8px); box-shadow: 0 0 60px rgba(0, 206, 209, 0.4);
+            z-index: 2; border-radius: 20px; overflow: hidden;
+        }
+
+        .header {
+            text-align: center; padding: 20px; border-bottom: 2px solid var(--sea-cyan);
+            background: linear-gradient(90deg, transparent, rgba(0,206,209,0.2), transparent);
+        }
+        .header h1 { margin: 0; color: var(--sea-cyan); letter-spacing: 15px; font-weight: 300; text-shadow: 0 0 20px var(--sea-cyan); }
+
+        .boss-split { flex: 1; display: flex; }
+        
+        .side {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 40px; transition: 0.5s; position: relative;
+        }
+        .side:hover { background: rgba(0, 206, 209, 0.05); }
+        .anahita-side { border-right: 1px solid var(--sea-cyan); }
+
+        .side img { max-width: 65%; filter: drop-shadow(0 0 30px var(--sea-cyan)); animation: swim 4s ease-in-out infinite alternate; }
+        .anahita-side img { max-width: 40%; }
+
+        .side h2 { color: white; text-shadow: 0 0 10px var(--sea-cyan); font-size: 35px; margin-top: 30px; letter-spacing: 5px; }
+        .stats { font-size: 18px; color: var(--sea-cyan); line-height: 1.8; text-align: center; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px; width: 60%; }
+
+        .footer { padding: 20px; display: flex; justify-content: center; border-top: 1px solid var(--sea-cyan); }
+        .action-button {
+            padding: 12px 40px; border: 2px solid var(--sea-cyan); color: var(--sea-cyan);
+            text-decoration: none; font-weight: bold; transition: 0.3s; letter-spacing: 2px;
+        }
+        .action-button:hover { background: var(--sea-cyan); color: var(--sea-dark); box-shadow: 0 0 30px var(--sea-cyan); }
+
+        @keyframes waveMotion { from { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } to { transform: rotate(360deg) scale(1); } }
+        @keyframes swim { from { transform: translateY(-15px); } to { transform: translateY(15px); } }
+    </style>
+</head>
+<body>
+    <div class="water-ripple"></div>
+    <div class="levi-frame">
+        <div class="header"><h1>THE OCEAN DUO</h1></div>
+        <div class="boss-split">
+            <div class="side anahita-side">
+                <img src="../images/Anahita.gif" alt="Anahita">
+                <h2>ANAHITA</h2>
+                <div class="stats"><b>HP:</b> 52,000<br><b>ATK:</b> 100<br><b>DEF:</b> 20</div>
+            </div>
+            <div class="side">
+                <img src="../images/Leviathan.gif" alt="Leviathan">
+                <h2>LEVIATHAN</h2>
+                <div class="stats"><b>HP:</b> 110,000<br><b>ATK:</b> 140<br><b>DEF:</b> 50</div>
+            </div>
+        </div>
+        <div class="footer"><a href="../bestiary/bestiary.html" class="action-button">_SURFACE_LEVEL</a></div>
+    </div>
+</body>
+</html>

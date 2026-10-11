@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ELDRI_SIGN // CULTIST</title>
+    <style>
+        :root { --blue: #00d4ff; --purple: #4e00ff; --light-blue: #aaffff; }
+        body { margin: 0; background: #08001a; color: var(--light-blue); font-family: 'Fragment Mono', monospace; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+        /* Многослойные, анимированные печати */
+        .seal-layer { position: absolute; width: 800px; height: 800px; border-radius: 50%; border: 1px dashed var(--blue); opacity: 0.1; }
+        .seal-layer:nth-child(1) { animation: rotateFast 20s linear infinite; }
+        .seal-layer:nth-child(2) { animation: rotateSlow 40s linear infinite reverse; border-color: var(--purple); }
+        .seal-layer:nth-child(3) { animation: rotateFast 15s linear infinite reverse; border-color: var(--light-blue); opacity: 0.05; }
+        
+        .runes { position: absolute; width: 100%; height: 100%; background: radial-gradient(rgba(0,212,255,0.05) 1px, transparent 1px); background-size: 30px 30px; animation: runeFlow 15s linear infinite; opacity: 0.15; }
+
+        .main-frame { width: 90vw; height: 85vh; border: 2px solid var(--blue); background: rgba(0,0,0,0.98); display: flex; box-shadow: 0 0 60px rgba(0, 212, 255, 0.4); z-index: 5; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Наклонный вырез */ }
+        
+        .portrait { flex: 1.2; display: flex; justify-content: center; align-items: center; border-right: 1px solid var(--purple); background: radial-gradient(circle, rgba(78,0,255,0.2) 0%, transparent 80%); }
+        .portrait img { width: 65%; filter: drop-shadow(0 0 40px var(--blue)); animation: cultistRise 4s infinite alternate; }
+
+        .content { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .status-tag { font-size: 14px; letter-spacing: 4px; color: var(--purple); margin-bottom: 10px; }
+        h1 { font-size: 50px; margin: 0; letter-spacing: 5px; color: var(--blue); text-shadow: 0 0 20px var(--blue); border-bottom: 2px solid var(--purple); padding-bottom: 10px; margin-bottom: 30px; }
+        
+        .terminal-data { font-size: 18px; line-height: 2.2; color: #fff; background: rgba(0,0,0,0.2); padding: 20px; border-left: 3px solid var(--blue); }
+        .terminal-data b { color: var(--light-blue); }
+
+        .btn-back { display: inline-block; margin-top: 50px; padding: 15px 40px; border: 2px solid var(--blue); color: var(--blue); text-decoration: none; transition: 0.4s; font-weight: bold; letter-spacing: 2px; background: transparent; }
+        .btn-back:hover { background: var(--blue); color: black; box-shadow: 0 0 40px var(--blue); transform: scale(1.05); }
+
+        @keyframes rotateFast { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        @keyframes runeFlow { from { background-position: 0 0; } to { background-position: 60px 60px; } }
+        @keyframes cultistRise { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px) scale(1.02); } }
+    </style>
+</head>
+<body>
+    <div class="seal-layer"></div>
+    <div class="seal-layer"></div>
+    <div class="seal-layer"></div>
+    <div class="runes"></div>
+    <div class="main-frame">
+        <div class="portrait"><img src="../images/lunatic-cultist.png"></div>
+        <div class="content">
+            <div class="status-tag">// ELDRITCH_RITUAL_CORE //</div>
+            <h1>LUNATIC CULTIST</h1>
+            <div class="terminal-data">
+                > PRIMARY_TARGET: <b>Moon_Lord</b><br>
+                > HEALTH: <b>32,000 / 51,200</b><br>
+                > MAGIC_POWER: <b>HIGH</b><br>
+                > WARNING: <b>Mirage_Clones</b>
+            </div>
+            <a href="../bestiary/bestiary.html" class="btn-back">_DISRUPT_RITUAL</a>
+        </div>
+    </div>
+</body>
+</html>

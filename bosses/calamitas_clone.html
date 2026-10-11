@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FORBIDDEN: CALAMITAS_CLONE</title>
+    <style>
+        :root {
+            --cal-red: #ff0033;
+            --cal-dark: #050000;
+        }
+
+        body {
+            margin: 0; padding: 0; background: var(--cal-dark);
+            color: #ffcccc; font-family: 'Palatino', serif;
+            overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+
+        .blood-rain {
+            position: absolute; width: 100%; height: 100%;
+            background: repeating-linear-gradient(transparent, transparent 20px, rgba(255,0,51,0.1) 21px);
+            animation: rainDrop 1s linear infinite; z-index: 1;
+        }
+
+        .calamitas-frame {
+            width: 90vw; height: 85vh; display: flex;
+            background: rgba(10, 0, 0, 0.95);
+            border: 2px solid var(--cal-red);
+            box-shadow: inset 0 0 100px rgba(255, 0, 51, 0.4), 0 0 50px var(--cal-red);
+            z-index: 2; position: relative;
+        }
+
+        .visual-section {
+            flex: 1.2; display: flex; justify-content: center; align-items: center;
+            border-right: 1px dashed var(--cal-red); position: relative;
+        }
+        
+        .aura {
+            position: absolute; width: 400px; height: 400px;
+            border-radius: 50%; border: 3px solid var(--cal-red);
+            animation: auraPulse 2s infinite; opacity: 0;
+        }
+
+        .visual-section img {
+            max-width: 60%; filter: drop-shadow(0 0 40px var(--cal-red));
+            z-index: 5; animation: floatDark 4s ease-in-out infinite;
+        }
+
+        .info-section {
+            flex: 1; padding: 70px;
+            display: flex; flex-direction: column; justify-content: center;
+            background: linear-gradient(180deg, rgba(255,0,51,0.05), transparent);
+        }
+
+        h1 {
+            font-size: 55px; color: var(--cal-red);
+            text-shadow: 0 0 20px var(--cal-red);
+            margin: 0 0 30px 0; letter-spacing: 8px; font-weight: normal;
+            border-bottom: 1px solid var(--cal-red); padding-bottom: 15px;
+        }
+
+        .warning-label {
+            background: var(--cal-red); color: white;
+            padding: 8px 15px; font-weight: bold; width: fit-content;
+            letter-spacing: 3px; margin-bottom: 20px; animation: blinkWarning 1s infinite;
+        }
+
+        .stats-detail {
+            font-size: 22px; line-height: 2.2; margin-bottom: 40px;
+        }
+        .stats-detail b { color: white; text-shadow: 0 0 5px var(--cal-red); }
+
+        .action-button {
+            display: inline-block; padding: 15px 35px;
+            border: 2px solid var(--cal-red); color: var(--cal-red);
+            text-decoration: none; font-weight: bold; letter-spacing: 3px;
+            transition: 0.3s; width: fit-content;
+        }
+        .action-button:hover {
+            background: var(--cal-red); color: black;
+            box-shadow: 0 0 40px var(--cal-red);
+        }
+
+        @keyframes rainDrop { from { transform: translateY(0); } to { transform: translateY(21px); } }
+        @keyframes floatDark { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.02); } }
+        @keyframes auraPulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes blinkWarning { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+    <div class="blood-rain"></div>
+    <div class="calamitas-frame">
+        <div class="visual-section">
+            <div class="aura"></div>
+            <div class="aura" style="animation-delay: 1s;"></div>
+            <img src="../images/Calamitas_Clone.gif" alt="Calamitas Clone">
+        </div>
+        <div class="info-section">
+            <div class="warning-label">THREAT_LEVEL: OMEGA</div>
+            <h1>CALAMITAS CLONE</h1>
+            <div class="stats-detail">
+                <b>HEALTH:</b> 64,000 / 102,400<br>
+                <b>DAMAGE:</b> 140 (Brimstone Fire)<br>
+                <b>DEFENSE:</b> 30<br>
+                <b>STATUS:</b> UNSTABLE CONSTRUCT
+            </div>
+            <a href="../bestiary/bestiary.html" class="action-button">ABORT_OBSERVATION</a>
+        </div>
+    </div>
+</body>
+</html>

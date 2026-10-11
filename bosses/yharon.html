@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORT: YHARON_ACTIVITY</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&family=Ruslan+Display&display=swap" rel="stylesheet">
+
+    <style>
+        /* ГЛОБАЛЬНЫЕ СТИЛИ: ОГНЕННАЯ АТМОСФЕРА */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; 
+            background: #000000;
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ЭФФЕКТ ДРОЖАЩЕГО ВОЗДУХА (ВЕРНУЛ) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -20px; left: -20px; right: -20px; bottom: -20px;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png') repeat; /* Заменил на доступную текстуру */
+            opacity: 0.15;
+            filter: blur(5px);
+            z-index: -1;
+            animation: heatHaze 5s linear infinite alternate;
+        }
+
+/* КАРТОЧКА: ПЛАМЕННЫЙ АЛТАРЬ С ГОРИЗОНТАЛЬНЫМИ ТЕНЯМИ */
+        .boss-container {
+            display: flex;
+            width: 92vw;
+            height: 85vh;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 40px;
+            background: linear-gradient(160deg, #1a0500 0%, #301000 100%);
+            border: 3px solid #ff4500;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+
+            /* МАГИЯ ТЕНЕЙ: */
+            box-shadow: 
+                /* 1. Глубокая черная тень ПО БОКАМ (выходит по горизонтали) */
+                -100px 0 120px -30px rgba(0, 0, 0, 1), 
+                 100px 0 120px -30px rgba(0, 0, 0, 1),
+                
+                /* 2. Огненное свечение, растянутое ВЛЕВО и ВПРАВО */
+                -60px 0 80px rgba(255, 69, 0, 0.6), 
+                 60px 0 80px rgba(255, 69, 0, 0.6),
+                
+                /* 3. Основной ореол вокруг всего бокса */
+                0 0 40px rgba(255, 69, 0, 0.4),
+                
+                /* 4. Внутренняя тень для объема */
+                inset 0 0 100px rgba(0,0,0,0.9);
+            
+            /* Чтобы тени не обрезались краями экрана, если бокс слишком широкий */
+            z-index: 1;
+        }
+
+        /* ЭФФЕКТ УГЛЕЙ (ВЕРНУЛ) */
+        .boss-container::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, transparent 50%, rgba(255,100,0,0.15) 100%);
+            animation: emberGlow 2s ease-in-out infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ВИЗУАЛ */
+        .boss-visual {
+            flex: 1.3;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .boss-visual img {
+            max-width: 100%;
+            max-height: 75vh;
+            image-rendering: pixelated; 
+            filter: drop-shadow(0 0 40px #ff4500);
+            animation: infernoPulse 1.2s ease-in-out infinite alternate;
+        }
+
+        /* ДАННЫЕ */
+        .boss-data {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-left: 3px solid #ff4500;
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        /* ЧЕТКИЙ ШРИФТ ДЛЯ ЗАГОЛОВКА */
+        .boss-data h1 {
+            font-family: 'Stalinist One', cursive;
+            font-size: 32px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #fff 0%, #ffcc00 50%, #ff4400 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1.2px #000; /* Контур для резкости */
+            filter: drop-shadow(4px 4px 0px #220000);
+        }
+
+        /* СПИСОК СТАТИСТИКИ */
+        .stats-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-list li {
+            font-size: 21px;
+            margin-bottom: 15px;
+            color: #ff8c00;
+            display: flex;
+            align-items: center;
+        }
+
+        /* МЕТКИ (STATUS, TOTAL_HP и т.д.) */
+        .stats-list li b { 
+            font-family: 'Stalinist One', cursive;
+            font-size: 14px;
+            color: #fff;
+            margin-right: 12px;
+            text-shadow: 2px 2px 0px #000;
+            letter-spacing: 1px;
+            min-width: 150px; /* Выравнивание */
+        }
+
+        /* ЗНАЧЕНИЯ */
+        .stats-list li span.val {
+            color: #ffd700;
+            font-family: 'Ruslan Display', serif;
+            letter-spacing: 1px;
+        }
+
+        /* КНОПКА (ВЕРНУЛ ТВОЙ СТИЛЬ) */
+        .btn-back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: transparent;
+            color: #ff4500;
+            border: 2px solid #ff4500;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Stalinist One', sans-serif;
+            font-size: 11px;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-back:hover {
+            background: #ff4500;
+            color: #fff;
+            box-shadow: 0 0 25px #ff4500;
+            transform: scale(1.05);
+        }
+
+        /* АНИМАЦИИ */
+        @keyframes heatHaze {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.05) translate(-5px, 5px); }
+        }
+
+        @keyframes emberGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes infernoPulse {
+            0% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 30px #ff4500); }
+            100% { transform: scale(1.05) rotate(1deg); filter: drop-shadow(0 0 60px #ffd700) brightness(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="boss-container">
+        <div class="boss-visual">
+            <img src="../images/Yharon.gif" alt="Yharon, Dragon of Rebirth">
+        </div>
+
+        <div class="boss-data">
+            <h1>YHARON:<br>DRAGON_OF_REBIRTH</h1>
+            <ul class="stats-list">
+                <li><b>STATUS:</b> <span class="val" style="color: #ff0000; text-shadow: 0 0 10px #ff0000;">ENRAGED</span></li>
+                <li><b>TOTAL P:</b> <span class="val">3,744,000</span></li>
+                <li><b>DAMAGE:</b> <span class="val">440 (Melee) + Firestorm</span></li>
+                <li><b>DEFENSE:</b> <span class="val">120</span></li>
+                <li><b>SPAWN:</b> <span class="val">Blessed Phoenix Egg</span></li>
+                <li><b>THEME:</b> <span class="val">Roar of the Jungle Dragon</span></li>
+            </ul>
+            
+            <p style="font-size: 15px; color: #ffa500; margin-top: 25px; line-height: 1.5; font-style: italic; border-top: 1px solid #444; padding-top: 15px;">
+                // ОТЧЕТ: Неистовый темп атаки и постоянные огненные торнадо требуют максимальной мобильности. Не вступать в бой без соответствующей подготовки.
+            </p>
+            
+            <a href="../bestiary/bestiary.html" class="btn-back">_RETURN_TO_LEGION_BESTIARY_</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSS_DATA: DESERT SCOURGE</title>
+    <style>
+        :root {
+            --p: #ffcf66;
+            --s: #d98a2b;
+            --bg: #140d02;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0; background: var(--bg);
+            color: #eef7ff; font-family: 'Rajdhani','Courier New',monospace;
+            min-height: 100vh; overflow-x: hidden;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+        .aura {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background: radial-gradient(circle at 35% 50%, #ffcf6622 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite alternate;
+        }
+        .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .particles span {
+            position: absolute; bottom: -20px; width: 6px; height: 6px;
+            background: var(--p); border-radius: 50%; opacity: 0.5;
+            box-shadow: 0 0 10px var(--p);
+            animation: rise linear infinite;
+        }
+        .frame {
+            position: relative; z-index: 2;
+            width: 92vw; max-width: 1100px; min-height: 78vh;
+            display: flex; flex-wrap: wrap;
+            background: rgba(0,0,0,0.55);
+            border: 2px solid var(--p);
+            box-shadow: 0 0 45px #ffcf6666, inset 0 0 25px #ffcf6633;
+            backdrop-filter: blur(6px);
+            clip-path: polygon(3% 0, 97% 0, 100% 6%, 100% 94%, 97% 100%, 3% 100%, 0 94%, 0 6%);
+        }
+        .visual {
+            flex: 1 1 360px; display: flex; justify-content: center; align-items: center;
+            border-right: 1px solid #ffcf6655; padding: 30px; min-height: 320px;
+            background: radial-gradient(circle, #ffcf6618 0%, transparent 75%);
+        }
+        .visual a { display: block; }
+        .visual img {
+            max-width: 100%; max-height: 60vh;
+            filter: drop-shadow(0 0 28px var(--p));
+            animation: float 5s ease-in-out infinite alternate;
+        }
+        .data {
+            flex: 1 1 360px; padding: 48px 50px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .status { letter-spacing: 2px; font-size: 13px; color: var(--p); opacity: 0.85; margin: 0 0 6px; }
+        h1 {
+            font-size: clamp(34px, 5vw, 56px); margin: 0 0 22px;
+            color: #fff; letter-spacing: 3px;
+            text-shadow: 0 0 14px var(--p), 0 0 32px var(--s);
+            border-bottom: 2px solid var(--s); padding-bottom: 12px;
+        }
+        .stats { list-style: none; padding: 0; margin: 0 0 26px;
+            border-left: 3px solid var(--p); }
+        .stats li { padding: 7px 0 7px 18px; font-size: 20px; line-height: 1.4; }
+        .stats b { color: var(--p); text-shadow: 0 0 6px var(--p); margin-right: 8px; }
+        .note {
+            font-size: 15px; font-style: italic; color: #bfe6ff;
+            border-left: 3px solid var(--s); padding-left: 14px; margin: 0 0 34px; opacity: 0.9;
+        }
+        .btn {
+            align-self: flex-start; padding: 13px 34px;
+            border: 2px solid var(--p); background: transparent; color: var(--p);
+            text-decoration: none; font-weight: 700; letter-spacing: 3px; font-size: 15px;
+            transition: .3s; text-transform: uppercase;
+        }
+        .btn:hover { background: var(--p); color: var(--bg); box-shadow: 0 0 32px var(--p); }
+        @keyframes float { from { transform: translateY(-10px) scale(1); } to { transform: translateY(12px) scale(1.03); } }
+        @keyframes pulse { from { opacity: .6; } to { opacity: 1; } }
+        @keyframes rise { 0% { transform: translateY(0) scale(.4); opacity: 0; } 20% { opacity: .6; } 100% { transform: translateY(-105vh) scale(1); opacity: 0; } }
+        @media (max-width: 720px) { .visual { border-right: none; border-bottom: 1px solid #ffcf6655; } .data { padding: 32px 26px; } }
+    </style>
+</head>
+<body>
+    <div class="aura"></div>
+    <div class="particles"><span style="left:56%;width:7px;height:7px;animation-duration:7.8s;animation-delay:1.4s;"></span><span style="left:25%;width:5px;height:5px;animation-duration:7.0s;animation-delay:0.1s;"></span><span style="left:69%;width:6px;height:6px;animation-duration:8.8s;animation-delay:1.8s;"></span><span style="left:89%;width:5px;height:5px;animation-duration:8.9s;animation-delay:6.2s;"></span><span style="left:77%;width:7px;height:7px;animation-duration:7.6s;animation-delay:6.0s;"></span><span style="left:58%;width:6px;height:6px;animation-duration:11.6s;animation-delay:5.1s;"></span><span style="left:27%;width:5px;height:5px;animation-duration:5.7s;animation-delay:5.1s;"></span><span style="left:40%;width:8px;height:8px;animation-duration:10.0s;animation-delay:5.5s;"></span><span style="left:44%;width:8px;height:8px;animation-duration:6.5s;animation-delay:7.8s;"></span><span style="left:43%;width:3px;height:3px;animation-duration:9.4s;animation-delay:5.3s;"></span><span style="left:63%;width:6px;height:6px;animation-duration:8.1s;animation-delay:4.5s;"></span><span style="left:22%;width:7px;height:7px;animation-duration:12.5s;animation-delay:7.3s;"></span><span style="left:11%;width:5px;height:5px;animation-duration:9.7s;animation-delay:0.6s;"></span><span style="left:87%;width:8px;height:8px;animation-duration:12.2s;animation-delay:2.7s;"></span></div>
+    <div class="frame">
+        <div class="visual">
+            <a href="https://calamitymod.wiki.gg/wiki/Desert_Scourge" target="_blank" rel="noopener">
+                <img src="../images/Desert_Scourge.gif" alt="DESERT SCOURGE">
+            </a>
+        </div>
+        <div class="data">
+            <p class="status">SYSTEM STATUS: APEX OF THE FORMER SEAS</p>
+            <h1>DESERT SCOURGE</h1>
+            <ul class="stats">
+                <li><b>HEALTH:</b> 4,000 / 8,000</li>
+                <li><b>DAMAGE:</b> 40 / 96 (Contact)</li>
+                <li><b>SAND BLAST:</b> 20 / 60</li>
+                <li><b>DEFENSE:</b> 4 – 9</li>
+                <li><b>SPAWN:</b> Desert Medallion</li>
+                <li><b>ENVIRONMENT:</b> Desert</li>
+            </ul>
+            <p class="note">Червь-босс пустыни. Ныряет под землю и выпускает залпы песчаных снарядов.</p>
+            <a href="../bestiary/bestiary.html" class="btn">_RESURFACE_TO_HUB</a>
+        </div>
+    </div>
+</body>
+</html>

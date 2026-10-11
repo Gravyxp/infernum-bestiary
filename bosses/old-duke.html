@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Profile - The Old Duke</title>
+    <style>
+        /* ГЛОБАЛЬНЫЕ СТИЛИ */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; 
+            background: #000a05; /* Темно-зеленый болотный фон */
+            color: #eeeeee;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* КАРТОЧКА БОССА */
+        .boss-container {
+            display: flex;
+            width: 90vw;
+            height: 85vh;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 40px;
+            background: rgba(10, 20, 10, 0.9);
+            border-radius: 20px;
+            /* ЯДОВИТЫЙ СЕРНО-ЖЕЛТЫЙ КОНТУР */
+            border: 2px solid #8db600;
+            box-shadow: 0 0 30px rgba(141, 182, 0, 0.3);
+        }
+
+        /* ЛЕВАЯ ЧАСТЬ (СПРАЙТ) */
+        .boss-visual {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boss-visual img {
+            max-width: 100%;
+            max-height: 70vh;
+            image-rendering: pixelated; 
+            filter: drop-shadow(0 0 45px #adff2f);
+            /* Анимация: тяжелое дыхание старого хищника */
+            animation: oldBeastAnim 4s ease-in-out infinite;
+        }
+
+        /* ПРАВАЯ ЧАСТЬ (ИНФОРМАЦИЯ) */
+        .boss-data {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .boss-data h1 {
+            font-size: 50px;
+            margin: 0 0 30px 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px #8db600;
+        }
+
+        /* ХАРАКТЕРИСТИКИ */
+        .stats-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .stats-list li {
+            font-size: 24px; 
+            margin-bottom: 20px;
+            display: flex;
+            border-bottom: 1px solid rgba(141, 182, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .stats-list li b {
+            color: #adff2f;
+            width: 180px;
+            text-transform: uppercase;
+            font-size: 18px; 
+            letter-spacing: 1px;
+        }
+
+        .spawn-item {
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        /* КНОПКА ВОЗВРАТА */
+        .btn-back {
+            margin-top: 40px;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid #8db600;
+            padding: 12px 35px;
+            border-radius: 10px;
+            width: fit-content;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-back:hover {
+            background: #8db600;
+            color: #000;
+            box-shadow: 0 0 25px #adff2f;
+            transform: scale(1.05);
+        }
+
+        /* АНИМАЦИЯ СТАРОГО ЗВЕРЯ */
+        @keyframes oldBeastAnim {
+            0%, 100% { transform: scale(1) rotate(-2deg); }
+            50% { transform: scale(1.05) rotate(2deg); filter: brightness(1.2) drop-shadow(0 0 60px #adff2f); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="boss-container">
+        <div class="boss-visual">
+            <img src="../images/The_Old_Duke.gif" alt="The Old Duke">
+        </div>
+
+        <div class="boss-data">
+            <h1>The Old Duke</h1>
+            <ul class="stats-list">
+                <li><b>Total HP:</b> 1,120,000</li>
+                <li><b>Damage:</b> 360</li>
+                <li><b>Defense:</b> 100</li>
+                <li><b>Spawn:</b> <span class="spawn-item">Bloodworm (Sulphurous Sea)</span></li>
+                <li><b>Music:</b> Toxic Wisdom</li>
+            </ul>
+            
+            <a href="../bestiary/bestiary.html" class="btn-back">Return to bestiary</a>
+        </div>
+    </div>
+
+</body>
+</html>

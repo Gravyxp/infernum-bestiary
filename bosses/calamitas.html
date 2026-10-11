@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTIMATE THREAT: SUPREME CALAMITAS</title>
+    <style>
+        /* ГЛОБАЛЬНЫЕ СТИЛИ: АПОКАЛИПТИЧЕСКАЯ АТМОСФЕРА */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; 
+            background: #000000; /* Абсолютная пустота */
+            color: #ff0000; /* Кроваво-красный */
+            font-family: 'Times New Roman', serif; /* Драматический, старинный шрифт */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ЭФФЕКТ ИСКАЖЕНИЯ (МЕРЦАЮЩИЙ ГОРЯЧИЙ ВОЗДУХ) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -50px; left: -50px; right: -50px; bottom: -50px;
+            background: radial-gradient(circle at center, rgba(255,0,0,0.1) 0%, transparent 70%);
+            animation: distortion 10s linear infinite alternate;
+            filter: blur(15px);
+            z-index: -1;
+        }
+
+        /* КАРТОЧКА: АРТЕФАКТ АПОКАЛИПСИСА */
+        .boss-container {
+            display: flex;
+            width: 95vw; /* Чуть шире для финальности */
+            height: 90vh; /* Чуть выше */
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 50px;
+            background: linear-gradient(135deg, #0a0000 0%, #200000 100%);
+            border: 5px solid #8b0000; /* Темно-красный */
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 0 100px rgba(255, 0, 0, 0.8), inset 0 0 150px rgba(0,0,0,0.9);
+            overflow: hidden;
+            text-align: center; /* Центруем все */
+        }
+
+        /* ЭФФЕКТ ПУЛЬСИРУЮЩЕЙ ТЬМЫ ВОКРУГ */
+        .boss-container::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.8) 100%);
+            animation: darkPulse 5s ease-in-out infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ВИЗУАЛ: САМА ВЕДЬМА */
+        .boss-visual {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .boss-visual img {
+            max-width: 100%;
+            max-height: 85vh; /* Максимально большая картинка */
+            image-rendering: pixelated; 
+            filter: drop_shadow(0 0 70px #ff0000);
+            animation: demonicAura 2s ease-in-out infinite alternate;
+        }
+
+        /* ДАННЫЕ: СВИТОК РОКА */
+        .boss-data {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-left: 3px solid #ff0000;
+            position: relative;
+            z-index: 1;
+            color: #fff; /* Белый текст для контраста */
+        }
+
+        .boss-data h1 {
+            font-size: 55px; /* Очень большой заголовок */
+            margin: 0 0 25px 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #8b0000;
+        }
+
+        .stats-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stats-list li {
+            font-size: 26px; /* Крупнее, чтобы читалось драматичнее */
+            margin-bottom: 20px;
+            color: #ffcccc; /* Светло-красный */
+        }
+
+        .stats-list li b { 
+            color: #ff0000; /* Чистый красный */
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 1px;
+        }
+
+        /* КНОПКА: ПОКОРИТЬ РОК */
+        .btn-back {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            background: #8b0000; /* Темно-красный фон */
+            color: #fff;
+            border: 3px solid #ff0000;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.4s;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        .btn-back:hover {
+            background: #ff0000;
+            color: #000;
+            box-shadow: 0 0 50px #ff0000;
+            transform: scale(1.1);
+        }
+
+        /* АНИМАЦИИ */
+        @keyframes distortion {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.1; }
+            50% { transform: scale(1.1) rotate(2deg); opacity: 0.2; }
+        }
+
+        @keyframes darkPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.9; }
+        }
+
+        @keyframes demonicAura {
+            0%, 100% { transform: scale(1) translateY(0); filter: brightness(1) drop-shadow(0 0 50px #ff0000); }
+            50% { transform: scale(1.02) translateY(-10px); filter: brightness(1.2) drop_shadow(0 0 100px #ff8c00); } /* Пульсирует в оранжевый */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="boss-container">
+        <div class="boss-visual">
+            <img src="../images/Calamitas.gif" alt="Supreme Calamitas">
+        </div>
+
+        <div class="boss-data">
+            <h1>SUPREME CALAMITAS<br>THE_FINAL_JUDGMENT</h1>
+            <ul class="stats-list" style="text-align: left; font-size: 18px;">
+                <li><b>MAX_HP (Legendary):</b> 2,760,000</li>
+                <li><b>CONTACT_DAMAGE:</b> 696</li>
+                <li><b>GIGA_BLAST_DMG:</b> 780</li>
+                <li><b>HELL_BLAST_DMG:</b> 726</li>
+                <li><b>DEFENSE / DR:</b> 100 / 25%</li>
+                <li><b>KNOCKBACK_RES:</b> 100% (IMMUNE)</li>
+                <li><b>SPAWN:</b> <span style="color: #ff4500;">Brimstone Idol</span></li>
+            </ul>
+            <p style="font-size: 18px; color: #ff0000; margin-top: 20px; border-top: 1px solid #ff0000; padding-top: 10px;">
+                // ВНИМАНИЕ: Зафиксирован критический уровень урона. 
+                Любая ошибка приведет к мгновенной дезинтеграции. 
+                Система защиты: 25% Снижение Урона. 
+                Рекомендуется использовать только самые мощные атаки и избегать прямого контакта.
+            </p>
+            
+            <a href="../bestiary/bestiary.html" class="btn-back">_CONFRONT_THE_DOOM_</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+
+/* --- ТАБЛИЦЫ И СТРАНИЦЫ БОССОВ (ТВОЙ КОД БЕЗ ИЗМЕНЕНИЙ) --- */
+.boss-table, .ice-theme, .desert-theme {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #121212;
+    color: white;
+    font-family: sans-serif;
+}
+
+.boss-table th, .boss-table td, .ice-theme td, .desert-theme td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+
+.boss-table th {
+    background-color: #1a1a1a;
+    color: gold;
+}
+
+.ice-theme {
+    margin: 0 auto;
+    box-shadow: 0 10px 15px rgb(0, 157, 255);
+}
+
+.ice-theme td:hover {
+    background-color: #0046f6;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.cryo-body { background-color: #655f8fa3; margin: 0; padding: 50px; }
+.desert-body { background-color: #ffd50083; margin: 0; padding: 50px; }
+
+.desert-theme {
+    margin: 0 auto;
+    box-shadow: 0 10px 15px rgb(75, 157, 3);
+}
+
+#back-button {
+    display: block;
+    margin: 50px auto;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    width: fit-content;
+    text-align: center;
+}
+
+/* --- ГЛАВНАЯ СТРАНИЦА (УВЕЛИЧЕННЫЙ ЭКРАН) --- */
+.main-bestiary {
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin: 20px 0;
+    text-shadow: 0 0 15px #ff00ea;
+}
+
+/* Растягиваем контейнер почти на весь экран */
+.shelves-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px; 
+    width: 95%; /* Почти вся ширина */
+    margin: 0 auto;
+}
+
+/* Увеличиваем ширину колонок */
+.shelf {
+    flex: 1;
+    max-width: 450px; /* Колонки стали шире */
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-top: 3px solid #444;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.shelf-title {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Цвета этапов */
+.pre-hardmode { border-color: #a3ffac; }
+.pre-hardmode .shelf-title { color: #a3ffac; }
+.hardmode { border-color: #00d4ff; }
+.hardmode .shelf-title { color: #00d4ff; }
+.post-moonlord { border-color: #ff4d4d; }
+.post-moonlord .shelf-title { color: #ff4d4d; }
+
+/* СПИСОК БОССОВ (УВЕЛИЧЕННАЯ ВЫСОТА + GAP 1px) */
+.boss-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;             /* Расстояние между боссами 1 пиксель */
+    max-height: 75vh;     /* Список теперь занимает 75% высоты экрана */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
+}
+
+/* Скроллбар */
+.boss-list::-webkit-scrollbar { width: 5px; }
+.boss-list::-webkit-scrollbar-thumb { background: #444; border-radius: 5px; }
+
+/* ТЕКСТ БОССОВ */
+.boss-hover {
+    position: relative;
+    font-size: 1rem;      /* Оптимальный размер шрифта */
+    font-weight: bold;
+    text-decoration: none;
+    color: #888;
+    transition: 0.2s;
+    display: block;
+    text-align: center;
+    padding: 4px 0;      /* Компактные строки */
+}
+
+.boss-hover:hover {
+    color: white;
+    text-shadow: 0 0 10px currentColor;
+    background: rgba(255, 255, 255, 0.05); /* Легкая подсветка строки */
+}
+
+/* Цвета боссов */
+
+.boss-item:nth-child(n+4):nth-child(-n+10) .boss-hover { color: #945eff; }
+.boss-item:nth-child(n+11):nth-child(-n+16) .boss-hover { color: #d53a3a; }
+.boss-item:nth-child(n+17) .boss-hover { color: #ff0000; }
+
+/* ГИФКИ ПОВЕРХ ВСЕГО (FIXED) */
+.hover-img {
+    position: fixed;      /* Фиксация относительно окна браузера */
+    top: 50%;             /* По центру вертикали */
+    left: 50%;            /* По центру горизонтали */
+    transform: translate(-50%, -50%) scale(0); /* Центрирование и скрытие */
+    opacity: 0;
+    width: 300px;         /* Оптимальный размер: не огромная, но заметная */
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; /* Не мешает нажимать на ссылки */
+    z-index: 10000;       /* ПОВЕРХ ВСЕГО */
+}
+
+.boss-hover:hover .hover-img {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+.ice-theme td:hover {
+    background-color: #0046f6; /* Делаем фон чуть светлее */
+    cursor: pointer;           /* Меняем курсор на "палец", как при нажатии */
+    transition: 1s;          /* Чтобы подсветка включалась плавно, а не дергано */  
+    padding: 10px 20px;
+}
+/* 1. Настраиваем ссылку-контейнер */
+a:has(.cryogen) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;  /* Центрируем всё содержимое (картинку) внутри */
+    text-decoration: none;
+}
+
+
+/* 2. Настраиваем саму картинку */
+.cryogen {
+    display: inline-block; /* Теперь она занимает только свое место */
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 10px #2b0063);
+    transition: 0.3s; /* Чтобы свечение тоже плавно менялось, если захочешь */
+}
+.cryo-body {
+    background-color: #655f8fa3; /* Глубокий темный цвет */
+    margin: 0;
+    padding: 50px; /* Чтобы контент не вплотную к краям браузера */
+}
+
+
+    
+/* 1. Настраиваем ссылку-контейнер */
+a:has(.desert-scourge) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;  /* Центрируем всё содержимое (картинку) внутри */
+    text-decoration: none;
+}
+
+/* 2. Настраиваем саму картинку */
+.desert-scourge {
+    display: inline-block; /* Теперь она занимает только свое место */
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 10px #fffb00);
+    transition: 0.3s; /* Чтобы свечение тоже плавно менялось, если захочешь */
+}
+.desert-theme td:hover {
+    background-color: #c1c507; /* Делаем фон чуть светлее */
+    cursor: pointer;           /* Меняем курсор на "палец", как при нажатии */
+    transition: 1s;          /* Чтобы подсветка включалась плавно, а не дергано */  
+    padding: 10px 20px;
+}
+.desert-body {
+    background-color: #ffd50083; /* Глубокий темный цвет */
+    margin: 0;
+    padding: 50px; /* Чтобы контент не вплотную к краям браузера */
+}
+
+.body/* 1. ГЛОБАЛЬНОЕ ИСПРАВЛЕНИЕ: Убираем скролл у всего окна браузера */
+html, body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* Теперь страница не дергается вверх-вниз */
+}
+/* --- НОВЫЙ НЕОН: БЕГАЮЩИЙ ЛАЗЕРНЫЙ СКОС --- */
+.shelf.post-moonlord {
+    position: relative;
+    background: #000000; /* Глубокий темный фон */
+    border-radius: 12px;
+    z-index: 1;
+    padding: 20px;
+    overflow: hidden; /* Важно, чтобы луч не вылетал за пределы коробки */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+/* 1. Создаем сам бегающий луч с помощью конического градиента */
+.shelf.post-moonlord::before {
+    content: '';
+    position: absolute;
+    /* Делаем элемент в два раза больше полки, чтобы он крутился вокруг центра */
+    top: -50%; 
+    left: -50%; 
+    width: 200%; 
+    height: 200%;
+    /* Цвета луча: начинается прозрачным, вспыхивает пурпурным и цианом, снова уходит в прозрачность */
+    background: conic-gradient(
+        transparent, 
+        transparent, 
+        transparent, 
+        #ff00ea, 
+        #00ffff, 
+        transparent 20%
+    );
+    animation: rotateLaser 4s linear infinite;
+    z-index: -2; /* Прячем на самый задний фон */
+}
+
+/* 2. Создаем "заглушку" по центру, чтобы луч был виден только по краям */
+.shelf.post-moonlord::after {
+    content: '';
+    position: absolute;
+    /* Оставляем 3 пикселя зазора для неоновой рамки */
+    top: 3px; 
+    left: 3px; 
+    right: 3px; 
+    bottom: 3px;
+    background: #0a0a0a; /* Цвет должен совпадать с фоном сайта */
+    border-radius: 9px;
+    z-index: -1; /* Прячем под текст, но над лучом */
+}
+
+/* Анимация вращения луча */
+@keyframes rotateLaser {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Контейнер-разлом */
+.singularity-link {
+    width: 80px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(127, 255, 212, 0.1);
+    background: #000;
+    cursor: none; /* Убираем курсор, чтобы усилить эффект поглощения */
+}
+
+.void-center {
+    width: 10px;
+    height: 10px;
+    background: #7fffd4;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #7fffd4;
+    position: relative;
+    transition: 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+/* Кольца "эха" реальности */
+.echo-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #7fffd4;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: ripple 2s infinite;
+    opacity: 0;
+}
+
+.echo-ring:nth-child(2) { animation-delay: 0.5s; }
+.echo-ring:nth-child(3) { animation-delay: 1s; }
+
+/* Эффект при наведении: Поглощение */
+.singularity-link:hover .void-center {
+    transform: scale(4) rotate(180deg);
+    background: #000;
+    box-shadow: 0 0 40px #fff, inset 0 0 10px #7fffd4;
+}
+
+.singularity-link:hover .echo-ring {
+    opacity: 1;
+    width: 300%;
+    height: 300%;
+    border-color: #fff;
+}
+
+/* Искаженная гифка босса */
+.singularity-img {
+    mix-blend-mode: exclusion; /* Инвертирует цвета под гифкой */
+    filter: brightness(1.5) blur(1px) !important;
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg) !important;
+    transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    opacity: 0;
+}
+
+.singularity-link:hover .singularity-img {
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg) !important;
+    opacity: 0.7;
+}
+
+@keyframes ripple {
+    0% { width: 10px; height: 10px; opacity: 1; }
+    100% { width: 150px; height: 150px; opacity: 0; }
+}
+
+/* Эффект "дрожания" для всей ссылки */
+.singularity-link:hover {
+    animation: jitter 0.1s infinite;
+}
+
+@keyframes jitter {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(1px, -1px); }
+    75% { transform: translate(-1px, 1px); }
+}
+/* Скрываем скроллбар для всего сайта */
+body {
+    -ms-overflow-style: none;  /* Для Internet Explorer и Edge */
+    scrollbar-width: none;     /* Для Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;             /* Для Chrome, Safari и Opera */
+}
+/* 1. Широкая дорожка - как кусок зараженной слизи */
+::-webkit-scrollbar {
+    width: 28px; /* Максимально широкий, чтобы детали были видны */
+    background: #000;
+}
+
+/* 2. Ползунок - "Пульсирующий Вырост" */
+::-webkit-scrollbar-thumb {
+    /* Основной фон: глубокий бордовый, как зараженная плоть */
+    background-color: #4a0000;
+    
+    /* Имитация вен и текстуры: сложный градиент */
+    background-image: 
+        /* Блики и тени для 3D эффекта выпуклости */
+        linear-gradient(to right, 
+            #000 0%, #300 20%, #600 50%, #300 80%, #000 100%),
+        /* Темные "вены" поверх */
+        repeating-linear-gradient(45deg, 
+            transparent 0, 
+            transparent 3px, 
+            rgba(0,0,0,0.5) 3px, 
+            rgba(0,0,0,0.5) 5px);
+    
+    border-radius: 8px; /* Слегка скругленные, "мясистые" края */
+    border: 3px solid #000; /* Вдавливаем в темную щель */
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.8), /* Внутренняя тень */
+        0 0 15px rgba(255, 0, 0, 0.4); /* Мягкое кровавое свечение */
+    
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Пружинистая анимация */
+}
+
+/* 3. ЭФФЕКТ "БИО-ПЕРЕГРУЗКИ" при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff0000; /* Краснеет до агрессивного */
+    background-image: 
+        linear-gradient(to right, 
+            #4a0000 0%, #ff4500 50%, #4a0000 100%),
+        repeating-linear-gradient(45deg, 
+            transparent 0, 
+            transparent 2px, 
+            rgba(255,255,255,0.7) 2px, /* Вены светятся белым */
+            rgba(255,255,255,0.7) 3px);
+            
+    box-shadow: 
+        0 0 25px rgba(255, 0, 0, 0.8), 
+        inset 0 0 15px rgba(255, 255, 255, 0.5); /* Внутренний блик */
+    
+    border-width: 1px; /* Визуально "раздувается" */
+    transform: scale(1.02); /* Чуть-чуть увеличивается */
+    cursor: pointer;
+}
+
+/* 4. Дорожка (Track) - Зараженный Тоннель */
+::-webkit-scrollbar-track {
+    background: #0d0000; /* Очень темный, почти черный с красным оттенком */
+    border-left: 2px solid #220000;
+    /* Медленно пульсирующий фон, как живая ткань */
+    background-image: radial-gradient(circle, #330000 1px, transparent 1px);
+    background-size: 100% 30px; /* Эффект мелких наростов */
+}

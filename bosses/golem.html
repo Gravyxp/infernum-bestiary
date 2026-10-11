@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TEMPLE_CORE: GOLEM</title>
+    <style>
+        :root {
+            --golem-gold: #ffae00;
+            --golem-brown: #3d2b19;
+            --golem-energy: #ff4500;
+        }
+
+        body {
+            margin: 0; padding: 0; background: #1a1005;
+            color: var(--golem-gold); font-family: 'Impact', sans-serif;
+            overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+
+        /* Эффект древних кирпичей на фоне */
+        .temple-bg {
+            position: absolute; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(90deg, rgba(0,0,0,0.2) 2px, transparent 2px),
+                linear-gradient(rgba(0,0,0,0.2) 2px, transparent 2px);
+            background-size: 80px 40px; opacity: 0.3; z-index: 1;
+        }
+
+        .golem-frame {
+            width: 90vw; height: 85vh; display: flex;
+            background: rgba(61, 43, 25, 0.95);
+            border: 10px solid #5c3a1e; position: relative;
+            box-shadow: 20px 20px 0px #000, 0 0 50px rgba(255, 174, 0, 0.3);
+            z-index: 2; overflow: hidden;
+        }
+
+        .visual-section {
+            flex: 1.2; display: flex; justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.4); border-right: 5px solid #5c3a1e; position: relative;
+        }
+
+        .visual-section img {
+            max-width: 75%; filter: sepia(0.3) drop-shadow(0 0 30px var(--golem-gold));
+            animation: golemShake 4s ease-in-out infinite;
+        }
+
+        /* Эффект солнечного заряда */
+        .sun-charge {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 70%);
+            animation: pulseCharge 2s infinite alternate;
+        }
+
+        .info-section {
+            flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center;
+        }
+
+        h1 {
+            font-size: 60px; color: var(--golem-gold); margin: 0;
+            text-transform: uppercase; -webkit-text-stroke: 2px #000;
+            letter-spacing: 5px; text-shadow: 5px 5px 0px #5c3a1e;
+        }
+
+        .ancient-text {
+            font-family: serif; font-style: italic; color: #ccaa88;
+            border-bottom: 2px solid var(--golem-gold); padding-bottom: 10px; margin-bottom: 30px;
+        }
+
+        .stats-list {
+            font-size: 24px; line-height: 2; margin-bottom: 40px;
+        }
+        .stats-list b { color: var(--golem-energy); }
+
+        .action-button {
+            padding: 15px 40px; background: var(--golem-gold); color: #000;
+            text-decoration: none; font-weight: bold; font-size: 20px;
+            box-shadow: 5px 5px 0px #000; transition: 0.2s; width: fit-content;
+        }
+        .action-button:hover {
+            transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #000;
+            background: var(--golem-energy); color: #fff;
+        }
+
+        @keyframes golemShake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, 2px); }
+        }
+        @keyframes pulseCharge {
+            0% { opacity: 0.3; } 100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="temple-bg"></div>
+    <div class="golem-frame">
+        <div class="visual-section">
+            <div class="sun-charge"></div>
+            <img src="../images/Golem.gif" alt="Golem">
+        </div>
+        <div class="info-section">
+            <h1>GOLEM</h1>
+            <p class="ancient-text">_LIHZHAHRD_IDOL_ACTIVE_</p>
+            <div class="stats-list">
+                <b>HEALTH:</b> 60,000 / 90,000<br>
+                <b>ATK:</b> 140 (Fists) / 120 (Lasers)<br>
+                <b>DEF:</b> 40 (Head) / 50 (Body)<br>
+                <b>ENERGY:</b> SOLAR POWERED
+            </div>
+            <a href="../bestiary/bestiary.html" class="action-button">DEACTIVATE_IDOL</a>
+        </div>
+    </div>
+</body>
+</html>

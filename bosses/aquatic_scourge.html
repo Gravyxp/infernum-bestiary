@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BOSS_DATA: AQUATIC_SCOURGE</title>
+    <style>
+        :root {
+            --aqua-primary: #00e6e6; /* Бирюзовый цвет воды */
+            --aqua-secondary: #00aaff; /* Голубой для акцентов */
+            --dark-water: #000a1a; /* Темный фон океана */
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: var(--dark-water);
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            overflow: hidden;
+            display: flex; justify-content: center; align-items: center; height: 100vh;
+            position: relative;
+        }
+
+        /* Эффект водной глади на фоне */
+        .water-surface {
+            position: absolute; width: 150%; height: 150%;
+            background: radial-gradient(circle at center, rgba(0, 230, 230, 0.1) 0%, transparent 70%);
+            animation: waterFlow 30s linear infinite alternate;
+            filter: blur(25px);
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Контейнер: подводный дисплей */
+        .scourge-container {
+            width: 90vw; height: 85vh;
+            display: flex;
+            background: rgba(0, 15, 30, 0.8);
+            border: 3px solid var(--aqua-primary);
+            border-radius: 20px;
+            box-shadow: 0 0 50px var(--aqua-primary), inset 0 0 30px rgba(0, 170, 255, 0.2);
+            position: relative;
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+        }
+
+        /* Визуальная часть */
+        .scourge-visual {
+            flex: 1.5;
+            display: flex; justify-content: center; align-items: center;
+            border-right: 2px solid var(--aqua-secondary);
+            background: linear-gradient(135deg, rgba(0, 10, 20, 0.5), rgba(0, 30, 60, 0.5));
+            position: relative;
+        }
+
+        .scourge-visual img {
+            max-width: 90%;
+            filter: drop-shadow(0 0 40px var(--aqua-primary));
+            animation: swimPulse 6s ease-in-out infinite alternate;
+        }
+
+        /* Пузырьки */
+        .bubble {
+            position: absolute; background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%; pointer-events: none;
+            animation: bubbleRise linear infinite;
+        }
+        /* Здесь можно добавить несколько пузырьков с разными размерами и задержками */
+        .bubble:nth-child(1) { width: 15px; height: 15px; left: 20%; animation-duration: 10s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 10px; height: 10px; left: 50%; animation-duration: 7s; animation-delay: 3s; }
+        .bubble:nth-child(3) { width: 20px; height: 20px; left: 70%; animation-duration: 12s; animation-delay: 5s; }
+
+        /* Блок данных */
+        .scourge-data {
+            flex: 1;
+            padding: 50px;
+            display: flex; flex-direction: column; justify-content: center;
+            background: rgba(0, 5, 10, 0.6);
+        }
+
+        h1 {
+            font-size: 48px;
+            color: var(--aqua-primary);
+            text-shadow: 0 0 15px var(--aqua-primary);
+            margin: 0 0 20px 0;
+            border-bottom: 2px solid var(--aqua-secondary);
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .stats-list {
+            list-style: none; padding: 0; font-size: 22px; line-height: 2;
+            color: #ccfaff;
+        }
+
+        .stats-list li b {
+            color: var(--aqua-secondary);
+            text-shadow: 0 0 8px var(--aqua-secondary);
+        }
+
+        .alert-message {
+            margin-top: 30px;
+            font-style: italic;
+            color: #88eeff;
+            border-left: 3px solid var(--aqua-primary);
+            padding-left: 15px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: transparent;
+            color: var(--aqua-primary);
+            border: 2px solid var(--aqua-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.3);
+        }
+        .btn-back:hover {
+            background: var(--aqua-primary);
+            color: var(--dark-water);
+            box-shadow: 0 0 40px var(--aqua-primary);
+        }
+
+        /* Анимации */
+        @keyframes waterFlow {
+            0% { transform: translate(-20%, -20%) scale(1); }
+            100% { transform: translate(20%, 20%) scale(1.1); }
+        }
+        @keyframes swimPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        @keyframes bubbleRise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="water-surface"></div>
+
+    <div class="scourge-container">
+        <div class="scourge-visual">
+            <img src="../images/Aquatic_scourge.png" alt="Aquatic Scourge">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <div class="scourge-data">
+            <h1>AQUATIC SCOURGE</h1>
+            <ul class="stats-list">
+                <li><b>HEALTH:</b> 130,000 / 208,000</li>
+                <li><b>DAMAGE:</b> 120 (Contact)</li>
+                <li><b>DEFENSE:</b> 20</li>
+                <li><b>ENVIRONMENT:</b> Sulphurous Sea</li>
+            </ul>
+            <p class="alert-message">
+                // СИСТЕМНОЕ УВЕДОМЛЕНИЕ: <br>
+                Обнаружено присутствие сернистой кислоты. <br>
+                Рекомендуется избегать прямого контакта с окружающей средой.
+            </p>
+            <a href="../bestiary/bestiary.html" class="btn-back">_RESURFACE_TO_HUB</a>
+        </div>
+    </div>
+
+</body>
+</html>

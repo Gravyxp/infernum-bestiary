@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINAL_ENTITY_00 // MOON_LORD</title>
+    <style>
+        /* MOON LORD: THE TRUE TERMINAL (ULTRA VERSION)
+           - Responsive 100% Scale Fix
+           - No JavaScript
+           - Pure CSS Kinetic UI
+        */
+
+        :root {
+            --ml-cyan: #7fffd4;
+            --ml-void: #000a0a;
+            --ml-accent: #004d4d;
+            --ml-warn: #ff4444;
+            --glow: 0 0 20px rgba(127, 255, 212, 0.5);
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        @keyframes bg-scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(40% 0 61% 0); transform: translate(-5px, 2px); }
+            20% { clip-path: inset(92% 0 1% 0); transform: translate(5px, -3px); }
+            40% { clip-path: inset(43% 0 1% 0); transform: translate(-5px, 3px); }
+            60% { clip-path: inset(25% 0 58% 0); transform: translate(5px, 1px); }
+            80% { clip-path: inset(54% 0 7% 0); transform: translate(-5px, -2px); }
+            100% { clip-path: inset(58% 0 43% 0); transform: translate(5px, 2px); }
+        }
+
+        @keyframes float-boss {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 30px var(--ml-cyan)); }
+            50% { transform: translateY(-20px) scale(1.02); filter: drop-shadow(0 0 60px #fff); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { opacity: 0.2; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: var(--ml-void);
+            color: var(--ml-cyan);
+            font-family: var(--font-main);
+            overflow: hidden; /* Запрещаем скролл для чистоты терминала */
+        }
+
+        /* Слои фона */
+        .background-wrap {
+            position: fixed; inset: 0;
+            background: radial-gradient(circle at center, #001a1a 0%, #000 80%);
+            z-index: -1;
+        }
+
+        .stars {
+            position: absolute; inset: 0;
+            background-image: 
+                radial-gradient(1px 1px at 10% 20%, white, transparent),
+                radial-gradient(1px 1px at 30% 50%, #7fffd4, transparent),
+                radial-gradient(2px 2px at 70% 80%, white, transparent);
+            background-size: 300px 300px;
+            animation: bg-scroll 120s linear infinite;
+            opacity: 0.4;
+        }
+
+        /* Сетка интерфейса */
+        .terminal-grid {
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            grid-template-columns: 280px 1fr 280px;
+            grid-template-rows: 60px 1fr 80px;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        /* Шапка */
+        .header {
+            grid-column: 1 / 4;
+            background: rgba(0, 40, 40, 0.4);
+            border: 1px solid var(--ml-accent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        .header .status { color: var(--ml-warn); animation: flicker 1s infinite; }
+
+        /* Боковые панели */
+        .sidebar {
+            background: rgba(0, 15, 15, 0.6);
+            border: 1px solid var(--ml-accent);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .side-title {
+            border-bottom: 1px solid var(--ml-cyan);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        .log-line {
+            font-family: monospace;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--ml-accent);
+            padding-left: 8px;
+        }
+
+        /* Центральный отсек с боссом */
+        .boss-chamber {
+            position: relative;
+            background: radial-gradient(circle, rgba(127, 255, 212, 0.05) 0%, transparent 70%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(127, 255, 212, 0.1);
+        }
+
+        .boss-img {
+            max-width: 90%;
+            max-height: 85%;
+            z-index: 5;
+            animation: float-boss 6s ease-in-out infinite;
+            transition: 0.5s transform;
+        }
+
+        .boss-img:hover { transform: scale(1.05) rotate(1deg); }
+
+        /* Эффекты в центре */
+        .ring {
+            position: absolute;
+            border: 2px solid var(--ml-cyan);
+            border-radius: 50%;
+            animation: pulse-ring 4s infinite;
+            pointer-events: none;
+        }
+
+        /* Информационные виджеты */
+        .widget {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--ml-accent);
+            padding: 15px;
+        }
+
+        .hp-bar-outer {
+            width: 100%;
+            height: 15px;
+            background: #111;
+            border: 1px solid var(--ml-cyan);
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .hp-bar-inner {
+            height: 100%;
+            width: 65%;
+            background: var(--ml-cyan);
+            box-shadow: var(--glow);
+            animation: hp-flicker 3s infinite;
+        }
+
+        /* Нижняя панель навигации */
+        .footer {
+            grid-column: 1 / 4;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            flex: 1;
+            background: rgba(127, 255, 212, 0.05);
+            border: 1px solid var(--ml-cyan);
+            color: var(--ml-cyan);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            background: var(--ml-cyan);
+            color: #000;
+            box-shadow: var(--glow);
+        }
+
+        /* Декоративные элементы сканирования */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(127, 255, 212, 0.2);
+            top: 0;
+            left: 0;
+            animation: scan-move 8s linear infinite;
+            z-index: 6;
+        }
+
+        @keyframes scan-move {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes hp-flicker {
+            0%, 100% { width: 65%; }
+            50% { width: 63%; }
+        }
+
+        /* Скрываем боковые панели на маленьких экранах для сохранения 100% масштаба */
+        @media (max-height: 600px) {
+            .sidebar { font-size: 10px; gap: 5px; }
+            .header { height: 40px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="background-wrap">
+        <div class="stars"></div>
+    </div>
+
+    <div class="terminal-grid">
+        
+        <header class="header">
+            <div>System: <span style="color:white">Celestial_Void_OS</span></div>
+            <div style="font-size: 20px;">Moon Lord Protocol</div>
+            <div class="status">● Critical Threat Detected</div>
+        </header>
+
+        <aside class="sidebar">
+            <div>
+                <div class="side-title">OBJECT_LOGS</div>
+                <div class="log-line">Detaching: True Eye...</div>
+                <div class="log-line">Phantasmal Deathray: Ready</div>
+                <div class="log-line">Lunar Leech Claws: Active</div>
+                <div class="log-line">Core Integrity: Stable</div>
+            </div>
+            <div class="widget" style="margin-top: auto;">
+                <div class="side-title">VULNERABILITY</div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Head Eye</span> <span style="color:white">Open</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Left Hand</span> <span style="color:white">Closed</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Core</span> <span style="color:#ff4444">Protected</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="boss-chamber">
+            <div class="scan-line"></div>
+            <div class="ring" style="width: 300px; height: 300px; animation-delay: 0s;"></div>
+            <div class="ring" style="width: 450px; height: 450px; animation-delay: 1s;"></div>
+            <div class="ring" style="width: 600px; height: 600px; animation-delay: 2s;"></div>
+            
+            <img src="../images/Moon_Lord.gif" alt="MOON LORD" class="boss-img">
+            
+            <div style="position: absolute; bottom: 20px; font-size: 12px; opacity: 0.5; letter-spacing: 2px;">
+                COORD: 45.882 // -12.003 // ALT: VOID
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <div class="side-title">TARGET_HEALTH</div>
+                <div style="font-size: 24px; font-weight: bold; color: white;"> 429,165 HP</div>
+                <div class="hp-bar-outer">
+                    <div class="hp-bar-inner"></div>
+                </div>
+                <div style="text-align: right; font-size: 10px; margin-top: 5px;">65.4% TOTAL</div>
+            </div>
+
+            <div class="widget">
+                <div class="side-title">DEFENSE_MATRIX</div>
+                <div style="display: flex; align-items: baseline; gap: 10px;">
+                    <span style="font-size: 30px; font-weight: bold; color: white;">70</span>
+                    <span style="opacity: 0.6;">Protection Units</span>
+                </div>
+            </div>
+
+            <div class="widget" style="margin-top: auto; border-color: var(--ml-warn);">
+                <div class="side-title" style="color: var(--ml-warn); border-color: var(--ml-warn);">THREAT_LEVEL</div>
+                <div style="font-size: 18px; text-align: center; font-weight: bold; padding: 10px 0;">
+                    OMEGA_EXTINCTION
+                </div>
+            </div>
+        </aside>
+
+        <footer class="footer">
+            <a href="../bestiary/bestiary.html" class="nav-button" style="flex: 2; background: rgba(255,255,255,0.05);">Terminate Session</a>
+            <a href="moon_lord_phase2.html" class="nav-button">Next Phase</a>
+        </footer>
+
+    </div>
+
+    <div style="position: fixed; top:0; left:0; width: 100%; height: 2px; background: var(--ml-cyan); opacity: 0.2; z-index: 100;"></div>
+    <div style="position: fixed; bottom:0; left:0; width: 100%; height: 2px; background: var(--ml-cyan); opacity: 0.2; z-index: 100;"></div>
+    <div style="position: fixed; top:0; left:0; width: 2px; height: 100%; background: var(--ml-cyan); opacity: 0.2; z-index: 100;"></div>
+    <div style="position: fixed; top:0; right:0; width: 2px; height: 100%; background: var(--ml-cyan); opacity: 0.2; z-index: 100;"></div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINATED // WORLD_ERASED</title>
+    <style>
+        /* FINAL STAGE: REALITY COLLAPSE
+           THE END OF THE SIMULATION
+           PURE CSS ULTRA-HARDCORE STYLE
+        */
+
+        :root {
+            --glitch-cyan: #00ffff;
+            --glitch-magenta: #ff00ff;
+            --pure-white: #ffffff;
+            --void: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; }
+
+        body {
+            background-color: var(--void);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* --- КАТАСТРОФИЧЕСКИЕ АНИМАЦИИ --- */
+
+        @keyframes screen-shake {
+            0% { transform: translate(0,0); }
+            10% { transform: translate(-10px, 5px); }
+            20% { transform: translate(10px, -5px) rotate(1deg); }
+            30% { transform: translate(-5px, -10px); }
+            40% { transform: translate(5px, 10px) rotate(-1deg); }
+            50% { transform: translate(-15px, 5px); }
+            100% { transform: translate(0,0); }
+        }
+
+        @keyframes white-out {
+            0% { filter: brightness(1) contrast(1); }
+            80% { filter: brightness(20) contrast(0.1); background: white; }
+            100% { filter: brightness(1); background: black; }
+        }
+
+        @keyframes explode-parts {
+            0% { transform: scale(1); opacity: 1; filter: hue-rotate(0deg); }
+            100% { transform: scale(5); opacity: 0; filter: hue-rotate(360deg) blur(20px); }
+        }
+
+        @keyframes scanline-crash {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes final-text {
+            0% { letter-spacing: -20px; opacity: 0; filter: blur(20px); }
+            50% { letter-spacing: 10px; opacity: 1; filter: blur(0px); }
+            100% { letter-spacing: 50px; opacity: 0; filter: blur(10px); }
+        }
+
+        /* --- СЛОИ КОЛЛАПСА --- */
+
+        .collapse-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: screen-shake 0.1s infinite, white-out 10s forwards;
+            z-index: 10;
+        }
+
+        /* Эффект разреза экрана */
+        .tear {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            width: 100%;
+            height: 2px;
+            box-shadow: 0 0 20px white;
+            animation: scanline-crash 0.5s infinite;
+        }
+
+        /* Распадающийся босс */
+        .boss-remnant {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            animation: explode-parts 12s cubic-bezier(0.95, 0.05, 0.795, 0.035) forwards;
+        }
+
+        .boss-remnant img {
+            width: 100%;
+            filter: drop-shadow(0 0 50px var(--glitch-cyan));
+        }
+
+        /* Глитч-текст финала */
+        .final-message {
+            position: absolute;
+            z-index: 20;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .final-message h1 {
+            color: white;
+            font-size: 8vw;
+            text-transform: uppercase;
+            font-weight: 900;
+            animation: final-text 8s ease-in-out forwards;
+            white-space: nowrap;
+        }
+
+        .credits-roll {
+            position: absolute;
+            bottom: -100%;
+            width: 100%;
+            text-align: center;
+            color: var(--glitch-cyan);
+            font-family: monospace;
+            font-size: 1.5rem;
+            animation: roll-up 20s linear 8s forwards;
+        }
+
+        @keyframes roll-up {
+            0% { bottom: -100%; }
+            100% { bottom: 150%; }
+        }
+
+        /* Осколки реальности */
+        .shard {
+            position: absolute;
+            background: white;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0.5;
+            animation: shard-fly 5s infinite;
+        }
+
+        @keyframes shard-fly {
+            0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0; }
+        }
+
+        /* Стили кнопок (они появляются в самом конце) */
+        .restart-box {
+            position: absolute;
+            bottom: 10%;
+            opacity: 0;
+            animation: fade-in-buttons 2s forwards 15s;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-revive {
+            padding: 15px 40px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            background: transparent;
+            font-weight: bold;
+            letter-spacing: 5px;
+            transition: 0.5s;
+        }
+
+        .btn-revive:hover {
+            background: white;
+            color: black;
+            box-shadow: 0 0 50px white;
+        }
+
+        @keyframes fade-in-buttons {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Инверсия цветов в случайные моменты */
+        .invert-glitch {
+            position: fixed; inset: 0;
+            background: white;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 200;
+            opacity: 0;
+            animation: flash-glitch 12s infinite;
+        }
+
+        @keyframes flash-glitch {
+            0%, 80%, 100% { opacity: 0; }
+            81% { opacity: 1; }
+            82% { opacity: 0; }
+            83% { opacity: 1; }
+            84% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="invert-glitch"></div>
+
+    <div class="shard" style="--x: 500px; --y: -500px; top: 50%; left: 50%; width: 20px; height: 40px;"></div>
+    <div class="shard" style="--x: -600px; --y: 400px; top: 40%; left: 60%; width: 30px; height: 50px; animation-delay: 1s;"></div>
+    <div class="shard" style="--x: 200px; --y: 800px; top: 10%; left: 20%; width: 15px; height: 30px; animation-delay: 2s;"></div>
+    <div class="shard" style="--x: -800px; --y: -200px; top: 80%; left: 10%; width: 40px; height: 60px; animation-delay: 0.5s;"></div>
+        <div class="boss-remnant">
+            <img src="../images/Moon_Lord.gif" alt="FATAL ERROR">
+        </div>
+
+        <div class="final-message">
+            <h1>IMPENDING DOOM</h1>
+        </div>
+
+        <div class="credits-roll">
+            <p>TERRARIA SYSTEM: SHUTTING DOWN</p><br>
+            <p>MOON LORD: DEFEATED</p><br>
+            <p>REALITY: DELETED</p><br>
+            <p>SOUL_FRAGMENTS: COLLECTED</p><br><br>
+            <p>THANK YOU FOR PLAYING</p><br>
+            <p>MADE BY GEMINI & DIMKA</p>
+        </div>
+
+        <div class="restart-box">
+            <a href="../bestiary/bestiary.html" class="btn-revive">RETURN TO MENU</a>
+            <a href="moon_lord.html" class="btn-revive" style="border-color: #00ffff; color: #00ffff;">RESTART BATTLE</a>
+        </div>
+    </div>
+
+</body>
+</html>

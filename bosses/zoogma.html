@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DATABASE_ACCESS: ZOOGMA_NULL</title>
+    <style>
+        :root {
+            --neon: #ff0055;
+            --cyan: #00ffff;
+            --bg: #030003;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background: var(--bg);
+            color: #fff;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Задний фон с эффектом "цифрового дождя" */
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.2; }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* Шапка с названием */
+        .boss-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--neon);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .boss-header h1 {
+            font-size: 4rem;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px var(--neon);
+            letter-spacing: 10px;
+        }
+
+        /* Основная карточка инфо */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        /* Левая колонка: Лор и Фазы */
+        .content-section {
+            background: var(--glass);
+            border: 1px solid #222;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        h2 { color: var(--cyan); border-left: 4px solid var(--cyan); padding-left: 15px; text-transform: uppercase; }
+
+        .phase-box {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 2px solid var(--neon);
+            background: rgba(255, 0, 85, 0.05);
+        }
+
+        /* Правая колонка: Статы (Инфобокс) */
+        .infobox {
+            background: #111;
+            border: 1px solid var(--neon);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .eye-preview {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pupil {
+            width: 30px; height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--neon);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+            font-size: 14px;
+        }
+
+        .stat-label { color: #888; }
+        .stat-value { color: var(--cyan); font-weight: bold; }
+
+        /* Таблица дропа */
+        .drop-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .drop-table th, .drop-table td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .drop-table th { background: #222; color: var(--neon); }
+
+        .btn-return {
+            display: block;
+            margin-top: 50px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-return:hover { background: var(--cyan); color: #000; }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="container">
+    <div class="boss-header">
+        <div>
+            <h1 id="glitch-title">ZOOGMA</h1>
+            <span style="color: #666;">SECRET_ENTITY // DATA_DETERMINED</span>
+        </div>
+        <div style="text-align: right;">
+            <div style="font-size: 24px; color: var(--neon);">100% HP</div>
+            <div style="font-size: 10px;">REALITY_STABILITY: CRITICAL</div>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="content-section">
+            <h2>История появления</h2>
+            <p>ЗОГМА — это не органическое существо. Это конгломерат удаленного кода, спрайтов и механик, которые были вырезаны из Terraria за последние 15 лет. Она существует в "Корзине" движка игры. При достижении критической массы данных, она пытается скомпилировать себя в реальный мир, вызывая графические артефакты и вылеты.</p>
+
+            <h2>Механика боя</h2>
+            <div class="phase-box">
+                <b>Фаза 1 (100% - 70%): "Цифровая Тень"</b><br>
+                Босс не атакует напрямую. Он копирует спрайты боссов, которых вы уже убили, но окрашивает их в ярко-розовый цвет. Каждый удар по ней замедляет ваше передвижение.
+            </div>
+            <div class="phase-box">
+                <b>Фаза 2 (70% - 30%): "Инверсия Кода"</b><br>
+                Экран переворачивается на 180 градусов. Клавиши управления меняются местами (Лево становится Правом). ЗОГМА начинает стрелять "битыми пикселями", которые накладывают дебафф "System Failure".
+            </div>
+            <div class="phase-box">
+                <b>Фаза 3 (30% - 0%): "Null Pointer Exception"</b><br>
+                Босс становится невидимым. Ориентироваться можно только по звуку статического шума. Каждый промах игрока восстанавливает боссу 100,000 здоровья.
+            </div>
+
+            <h2>Уязвимости и Сопротивления</h2>
+            <table class="drop-table">
+                <tr><th>Тип урона</th><th>Множитель</th><th>Эффект</th></tr>
+                <tr><td>Ближний бой</td><td>0.1x</td><td>Почти невосприимчива</td></tr>
+                <tr><td>Магия</td><td>2.0x</td><td>Критическая уязвимость</td></tr>
+                <tr><td>Дебаффы модов</td><td>IMMUNE</td><td>Игнорирует всё</td></tr>
+            </table>
+        </div>
+
+        <aside class="infobox">
+            <div class="eye-preview" id="eye-box">
+                <div class="pupil" id="pupil"></div>
+            </div>
+            
+            <div class="stat-row"><span class="stat-label">Здоровье</span><span class="stat-value">10,000,000</span></div>
+            <div class="stat-row"><span class="stat-label">Защита</span><span class="stat-value">100</span></div>
+            <div class="stat-row"><span class="stat-label">Урон</span><span class="stat-value">8,000 (True)</span></div>
+            <div class="stat-row"><span class="stat-label">Сложность</span><span class="stat-value">IMPOSSIBLE</span></div>
+            
+            <h3 style="margin-top:20px; font-size: 14px; color: var(--neon);">ВОЗМОЖНЫЙ ДРОП:</h3>
+            <table class="drop-table" style="font-size: 12px;">
+                <tr><td>Red Umbrella</td><td>33.33%</td></tr>
+                <tr><td>Omega Healing Potion (5-15)</td><td>100%</td></tr>
+                <tr><td>Auric Sludge Remnant (30-40)</td><td>100%</td></tr>
+            </table>
+        </aside>
+    </div>
+
+    <a href="../bestiary/bestiary.html" class="btn-return">ВЕРНУТЬСЯ В РЕАЛЬНОСТЬ</a>
+</div>
+
+<script>
+    // Следящий глаз
+    const pupil = document.getElementById('pupil');
+    const eyeBox = document.getElementById('eye-box');
+    
+    document.addEventListener('mousemove', (e) => {
+        const rect = eyeBox.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width * 100;
+        const y = (e.clientY - rect.top) / rect.height * 100;
+        
+        pupil.style.transform = `translate(${x/2 - 25}px, ${y/2 - 25}px)`;
+    });
+
+    // Фон с матрицей
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#ff0055";
+        ctx.font = fontSize + "px monospace";
+
+        drops.forEach((y, i) => {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, y * fontSize);
+            if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        });
+    }
+    setInterval(drawMatrix, 50);
+
+    // Эффект глитча в заголовке
+    const title = document.getElementById('glitch-title');
+    setInterval(() => {
+        title.style.transform = `translate(${Math.random()*4-2}px, ${Math.random()*4-2}px)`;
+        if(Math.random() > 0.9) {
+            title.innerText = "Z00GM4_NULL";
+            setTimeout(() => title.innerText = "ZOOGMA", 100);
+        }
+    }, 150);
+</script>
+
+</body>
+</html>

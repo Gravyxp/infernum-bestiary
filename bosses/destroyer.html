@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TARGET_PROTOCOL: DESTROYER_UNIT</title>
+    <style>
+        :root {
+            --destroyer-red: #ff3333;
+            --destroyer-dark: #0a0000;
+            --destroyer-accent: #ff9999;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: var(--destroyer-dark);
+            color: var(--destroyer-red);
+            font-family: 'Press Start 2P', cursive; /* Пиксельный шрифт */
+            overflow: hidden;
+            display: flex; justify-content: center; align-items: center; height: 100vh;
+            position: relative;
+        }
+
+        /* Фоновая сетка с эффектом сканирования */
+        .grid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,51,51,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,51,51,0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none; z-index: 1;
+            animation: gridScan 15s linear infinite;
+        }
+
+        /* Главный фрейм UI */
+        .destroyer-frame {
+            width: 90vw; height: 85vh;
+            display: flex;
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid var(--destroyer-red);
+            position: relative;
+            box-shadow: 0 0 80px rgba(255, 51, 51, 0.6);
+            clip-path: polygon(0 4%, 4% 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 4% 100%, 0 96%); /* Угловатый вырез */
+            z-index: 2;
+        }
+
+        /* Визуальная секция */
+        .visual-section {
+            flex: 1.5;
+            display: flex; justify-content: center; align-items: center;
+            border-right: 2px solid var(--destroyer-red);
+            background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-section img {
+            max-width: 90%;
+            filter: drop-shadow(0 0 35px var(--destroyer-red)) grayscale(0.2);
+            animation: mechanicalPulse 0.8s ease-in-out infinite alternate;
+        }
+
+        /* Цифровые помехи */
+        .glitch-effect {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="transparent"/><path d="M0 0h5v5H0zM5 5h5v5H5z" fill="rgba(255,51,51,0.1)"/></svg>');
+            animation: dataGlitch 0.5s steps(1) infinite;
+            pointer-events: none; opacity: 0.1;
+        }
+
+        /* Информационная секция */
+        .info-section {
+            flex: 1;
+            padding: 50px;
+            display: flex; flex-direction: column; justify-content: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(20,0,0,0.8));
+        }
+
+        .status-header {
+            font-size: 18px;
+            color: var(--destroyer-accent);
+            text-shadow: 0 0 10px var(--destroyer-accent);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: var(--destroyer-red);
+            text-shadow: 0 0 20px var(--destroyer-red);
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            border-bottom: 2px solid var(--destroyer-red);
+            padding-bottom: 10px;
+        }
+
+        .stats-list {
+            list-style: none; padding: 0; margin: 30px 0;
+            font-size: 16px;
+            line-height: 2.2;
+            color: white;
+            border-left: 3px solid var(--destroyer-accent);
+            padding-left: 20px;
+            background: linear-gradient(90deg, rgba(255,51,51,0.05), transparent);
+        }
+
+        .stats-list li b {
+            color: var(--destroyer-accent);
+            text-shadow: 0 0 5px var(--destroyer-accent);
+        }
+
+        .action-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--destroyer-red);
+            border: 2px solid var(--destroyer-red);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 3px;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 0 25px rgba(255, 51, 51, 0.4);
+        }
+        .action-button:hover {
+            background: var(--destroyer-red);
+            color: var(--destroyer-dark);
+            box-shadow: 0 0 50px var(--destroyer-red);
+            transform: scale(1.05);
+        }
+
+        /* Анимации */
+        @keyframes gridScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 500px; }
+        }
+        @keyframes mechanicalPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 35px var(--destroyer-red)) grayscale(0.2); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 0 50px var(--destroyer-accent)) grayscale(0); }
+        }
+        @keyframes dataGlitch {
+            0% { opacity: 0.1; background-position: 0 0; }
+            25% { opacity: 0.2; background-position: 10px 10px; }
+            50% { opacity: 0.1; background-position: 20px 0; }
+            75% { opacity: 0.2; background-position: 0 20px; }
+            100% { opacity: 0.1; background-position: 0 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <div class="destroyer-frame">
+        <div class="visual-section">
+            <img src="../images/destroyer.png" alt="The Destroyer">
+            <div class="glitch-effect"></div>
+        </div>
+        <div class="info-section">
+            <p class="status-header">_ANALYZING_THREAT_SIGNATURE_</p>
+            <h1>THE DESTROYER</h1>
+            <ul class="stats-list">
+                <li><b>HEALTH:</b> 120,000 / 192,000 (Expert)</li>
+                <li><b>DAMAGE:</b> 280 (Head) / 96 (Laser)</li>
+                <li><b>DEFENSE:</b> 100 (Head) / 0 (Body Segment)</li>
+                <li><b>SPAWN:</b> MECHANICAL WORM</li>
+                <li><b>VULNERABILITY:</b> PIERCE, EXPLOSION</li>
+            </ul>
+            <a href="../bestiary/bestiary.html" class="action-button">_TERMINATE_SESSION</a>
+        </div>
+    </div>
+</body>
+</html>

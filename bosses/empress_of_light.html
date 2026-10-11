@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DIVINE_PRISM: EMPRESS_OF_LIGHT</title>
+    <style>
+        :root {
+            --eol-pink: #ff00ff;
+            --eol-cyan: #00ffff;
+            --eol-gold: #ffff00;
+        }
+        body {
+            margin: 0; background: #050005; overflow: hidden; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Cinzel', serif; color: white;
+        }
+        .rainbow-bg {
+            position: absolute; width: 200%; height: 200%;
+            background: conic-gradient(from 180deg, #ff0000, #ff00ff, #0000ff, #00ffff, #00ff00, #ffff00, #ff0000);
+            animation: rotate 10s linear infinite; opacity: 0.1; filter: blur(80px);
+        }
+        .frame {
+            width: 90vw; height: 85vh; border: 2px solid var(--eol-pink);
+            background: rgba(0, 0, 0, 0.8); position: relative; display: flex;
+            box-shadow: 0 0 50px var(--eol-pink), inset 0 0 20px var(--eol-cyan);
+            border-radius: 100px 5px 100px 5px; overflow: hidden;
+        }
+        .visual {
+            flex: 1.2; display: flex; justify-content: center; align-items: center;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        .visual img {
+            max-width: 80%; filter: drop-shadow(0 0 40px white);
+            animation: divineHover 3s ease-in-out infinite;
+        }
+        .info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        h1 {
+            font-size: 45px; margin: 0; text-transform: uppercase; letter-spacing: 5px;
+            background: linear-gradient(to right, var(--eol-cyan), var(--eol-pink), var(--eol-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255,0,255,0.5));
+        }
+        .stats { margin: 30px 0; font-size: 20px; line-height: 2; border-left: 3px solid var(--eol-gold); padding-left: 20px; }
+        .stats b { color: var(--eol-cyan); }
+        .btn-back {
+            padding: 15px 40px; border: 1px solid white; color: white; text-decoration: none;
+            width: fit-content; transition: 0.4s; letter-spacing: 2px; background: rgba(255,255,255,0.05);
+        }
+        .btn-back:hover { background: white; color: black; box-shadow: 0 0 30px white; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes divineHover { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.05); } }
+    </style>
+</head>
+<body>
+    <div class="rainbow-bg"></div>
+    <div class="frame">
+        <div class="visual"><img src="../images/Empress_of_Light.gif"></div>
+        <div class="info">
+            <p style="color: var(--eol-gold); letter-spacing: 3px;">// PRISMATIC_ENTITY_DETECTION //</p>
+            <h1>EMPRESS OF LIGHT</h1>
+            <div class="stats">
+                <b>HEALTH:</b> 70,000 / 110,000<br>
+                <b>DAMAGE:</b> 100 (Day: ∞)<br>
+                <b>DEFENSE:</b> 50<br>
+                <b>STATUS:</b> ENRAGED IN DAYLIGHT
+            </div>
+            <a href="../bestiary/bestiary.html" class="btn-back">_RETURN_TO_CORE</a>
+        </div>
+    </div>
+</body>
+</html>

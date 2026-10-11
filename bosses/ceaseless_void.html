@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Profile - Ceaseless Void</title>
+    <style>
+        /* ГЛОБАЛЬНЫЕ СТИЛИ */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; 
+            background: #020005; /* Почти абсолютная тьма */
+            color: #eeeeee;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* КАРТОЧКА БОССА */
+        .boss-container {
+            display: flex;
+            width: 90vw;
+            height: 85vh;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 40px;
+            background: rgba(5, 0, 15, 0.95);
+            border-radius: 20px;
+            /* ТЕМНО-ФИОЛЕТОВАЯ ГРАНИЦА ПУСТОТЫ */
+            border: 2px solid #4b0082;
+            box-shadow: 0 0 50px rgba(75, 0, 130, 0.5), inset 0 0 30px rgba(0, 0, 0, 1);
+        }
+
+        /* ЛЕВАЯ ЧАСТЬ (СПРАЙТ) */
+        .boss-visual {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boss-visual img {
+            max-width: 100%;
+            max-height: 65vh;
+            image-rendering: pixelated; 
+            filter: drop-shadow(0 0 60px #6a0dad);
+            /* Анимация поглощения: сжатие и свечение */
+            animation: eventHorizon 4s ease-in-out infinite alternate;
+        }
+
+        /* ПРАВАЯ ЧАСТЬ (ИНФОРМАЦИЯ) */
+        .boss-data {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .boss-data h1 {
+            font-size: 50px;
+            margin: 0 0 30px 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-shadow: 0 0 25px #4b0082;
+        }
+
+        /* ХАРАКТЕРИСТИКИ */
+        .stats-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .stats-list li {
+            font-size: 24px; 
+            margin-bottom: 25px;
+            display: flex;
+            border-bottom: 1px solid rgba(75, 0, 130, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .stats-list li b {
+            color: #9932cc;
+            width: 180px;
+            text-transform: uppercase;
+            font-size: 18px; 
+            letter-spacing: 2px;
+        }
+
+        .spawn-item {
+            color: #da70d6;
+            font-weight: bold;
+            text-transform: none;
+        }
+
+        /* КНОПКА ВОЗВРАТА */
+        .btn-back {
+            margin-top: 40px;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid #4b0082;
+            padding: 12px 35px;
+            border-radius: 10px;
+            width: fit-content;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-back:hover {
+            background: #4b0082;
+            color: #fff;
+            box-shadow: 0 0 30px #4b0082;
+            transform: scale(1.05);
+        }
+
+        /* АНИМАЦИЯ ГОРИЗОНТА СОБЫТИЙ */
+        @keyframes eventHorizon {
+            0% { transform: scale(1); filter: brightness(0.8) drop-shadow(0 0 30px #6a0dad); }
+            100% { transform: scale(0.85); filter: brightness(1.4) drop-shadow(0 0 80px #9932cc); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="boss-container">
+        <div class="boss-visual">
+            <img src="../images/CeaselessVoid.gif" alt="Ceaseless Void">
+        </div>
+
+        <div class="boss-data">
+            <h1>Ceaseless Void</h1>
+            <ul class="stats-list">
+                <li><b>Total HP:</b> 416,000</li>
+                <li><b>Damage:</b> 300 (Contact)</li>
+                <li><b>Defense:</b> 0 (DR: 99%)</li>
+                <li><b>Spawn:</b> <span class="spawn-item">Rune of Kos (Dungeon)</span></li>
+                <li><b>Music:</b> Void</li>
+            </ul>
+            
+            <a href="../bestiary/bestiary.html" class="btn-back">Return to bestiary</a>
+        </div>
+    </div>
+
+</body>
+</html>
